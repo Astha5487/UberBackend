@@ -1,16 +1,12 @@
-# Use Java 21 base image
-FROM eclipse-temurin:21-jdk
-
-# Set working directory
+# Stage 1: Build the app using Maven
+FROM maven:3.9.6-eclipse-temurin-21 as builder
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the built JAR into the container
-COPY target/uberApp-0.0.1-SNAPSHOT.jar app.jar
-# OR use wildcard if only one jar:
-# COPY target/*.jar app.jar
-
-# Expose port 8080
+# Stage 2: Run the app
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Start the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]
