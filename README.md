@@ -1,97 +1,89 @@
-🚖 Ride Booking Platform – Backend
-A scalable Uber-like ride-booking platform backend built with Spring Boot, enabling real-time ride matching, secure authentication, OTP-verified rides, wallet/cash payments, and driver/rider rating. Integrated with PostgreSQL + PostGIS for spatial queries and OSRM API for accurate fare calculation.
+# 🚖 UBER – Backend
 
-🔧 Tech Stack
-Java + Spring Boot – REST APIs, Security, Mail
+A scalable **Uber-like ride-booking platform** backend built with **Spring Boot**, enabling real-time ride matching, secure authentication, OTP-verified rides, wallet/cash payments, and driver/rider rating. Integrated with **PostgreSQL + PostGIS** for spatial queries and **OSRM API** for accurate fare calculation.
 
-PostgreSQL + PostGIS – Spatial database for geolocation
+---
 
-JWT – Secure token-based authentication
+## 🔧 Tech Stack
 
-JUnit + Mockito + TestContainers – Unit & integration testing
+- **Java + Spring Boot** – REST APIs, Security, Mail
+- **PostgreSQL + PostGIS** – Spatial database for geolocation
+- **JWT** – Secure token-based authentication
+- **JUnit + Mockito + TestContainers** – Unit & integration testing
+- **SMTP (Gmail)** – For email notifications
+- **OSRM API** – Distance & duration-based fare calculation
 
-SMTP (Gmail) – For email notifications
+---
 
-OSRM API – Distance & duration-based fare calculation
+## ✅ Key Features
 
-✅ Key Features
-👤 Authentication & Roles
-JWT-based signup/login
+### 👤 Authentication & Roles
 
-Role-based access for Riders and Drivers
+- **JWT-based signup/login**
+- Role-based access for **Riders** and **Drivers**
+- Driver onboarding with **vehicle registration**
 
-Driver onboarding with vehicle registration
+### 📍 Ride Booking & Management
 
-📍 Ride Booking & Management
-Request, track, cancel rides (by Rider)
+- Request, track, cancel rides (by Rider)
+- Accept, start (with OTP), end rides (by Driver)
+- Real-time state transitions of rides
 
-Accept, start (with OTP), end rides (by Driver)
+### 📊 Modular Strategy Patterns
 
-Real-time state transitions of rides
+- **Driver Matching Strategy**:  
+  - Proximity-based (default)  
+  - High-rating-based (for premium riders)
 
-📊 Modular Strategy Patterns
-Driver Matching Strategy:
+- **Fare Calculation Strategy**:  
+  - Base pricing using distance  
+  - **Surge pricing** applied during 6 PM–9 PM
 
-Proximity-based (default)
+- **Payment Strategy**:  
+  - Supports **Wallet** and **Cash** payments  
+  - Wallet top-up and deduction managed via `WalletService`
 
-High-rating-based (for premium riders)
+### 💸 Wallet & Payment System
 
-Fare Calculation Strategy:
+- Rider’s wallet is debited, Driver’s is credited
+- **Platform commission** handled automatically
+- Fallback support for cash payments
+- **TransactionMethod enum** tracks purpose of funds
 
-Base pricing using distance
+### ⭐ Rating System
 
-Surge pricing applied during 6 PM–9 PM
+- Post-ride feedback system
+- Rating updated using weighted average
+- Applies to both **Rider and Driver profiles**
 
-Payment Strategy:
+### 🔐 OTP-Based Ride Start
 
-Supports Wallet and Cash payments
+- Secure ride start via OTP verification sent to Rider
+- Driver must submit correct OTP to begin trip
 
-Wallet top-up and deduction managed via WalletService
+### ✉️ Email Notifications
 
-💸 Wallet & Payment System
-Rider’s wallet is debited, Driver’s is credited
+- Account creation, ride status updates via **SMTP**
+- Configured using **Spring Mail + Gmail SMTP**
 
-Platform commission handled automatically
+### 📦 Testing Support
 
-Fallback support for cash payments
+- **TestContainers** for dynamic PostgreSQL setup
+- **JUnit + Mockito** for robust unit testing
+- Isolated tests with realistic data
 
-TransactionMethod enum tracks purpose of funds
+---
 
-⭐ Rating System
-Post-ride feedback system
+## 🗺️ Spatial Intelligence
 
-Rating updated using weighted average
+- Geospatial location support via **PostGIS**
+- Nearest driver lookup based on Rider's coordinates
+- **GeometryUtil** used for Point creation from latitude & longitude
 
-Applies to both Rider and Driver profiles
+---
 
-🔐 OTP-Based Ride Start
-Secure ride start via OTP verification sent to Rider
+## 📂 Project Structure
 
-Driver must submit correct OTP to begin trip
-
-✉️ Email Notifications
-Account creation, ride status updates via SMTP
-
-Configured using Spring Mail + Gmail SMTP
-
-📦 Testing Support
-TestContainers for dynamic PostgreSQL setup
-
-JUnit + Mockito for robust unit testing
-
-Isolated tests with realistic data
-
-🗺️ Spatial Intelligence
-Geospatial location support via PostGIS
-
-Nearest driver lookup based on Rider's coordinates
-
-GeometryUtil used for Point creation from latitude & longitude
-
-📂 Project Structure
-css
-Copy
-Edit
 src/
 ├── controllers/
 ├── dto/
@@ -103,22 +95,28 @@ src/
 ├── strategies/
 ├── utils/
 └── UberAppApplication.java
-🚀 Running the Application
-🔧 Prerequisites
-Java 17+
 
-Maven
-
-PostgreSQL with PostGIS extension
-
-⚙️ Steps to Run
-Clone the repository
-
-bash
+yaml
 Copy
 Edit
-git clone https://github.com/your-username/ride-booking-platform.git
-cd ride-booking-platform
+
+---
+
+## 🚀 Running the Application
+
+### 🔧 Prerequisites
+
+- Java 17+
+- Maven
+- PostgreSQL with PostGIS extension
+
+### ⚙️ Steps to Run
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/your-username/ride-booking-platform.git
+   cd ride-booking-platform
 Configure application.properties
 
 Set up:
@@ -163,5 +161,3 @@ Admin dashboard for monitoring
 SMS integration (e.g., with Twilio)
 
 Microservice decomposition for scalability
-
-
