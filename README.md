@@ -82,8 +82,9 @@ A scalable **Uber-like ride-booking platform** backend built with **Spring Boot*
 
 ---
 
-## 📂 Project Structure
+### 📁 Project Structure
 
+```text
 src/
 ├── controllers/
 ├── dto/
@@ -95,6 +96,8 @@ src/
 ├── strategies/
 ├── utils/
 └── UberAppApplication.java
+```
+
 
 
 
