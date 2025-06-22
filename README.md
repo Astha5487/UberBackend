@@ -81,8 +81,7 @@ A scalable **Uber-like ride-booking platform** backend built with **Spring Boot*
 - **GeometryUtil** used for Point creation from latitude & longitude
 
 ---
-
-### 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 src/
@@ -98,67 +97,94 @@ src/
 └── UberAppApplication.java
 ```
 
-
-
-
 ---
 
 ## 🚀 Running the Application
 
 ### 🔧 Prerequisites
 
+```text
 - Java 17+
 - Maven
-- PostgreSQL with PostGIS extension
+- PostgreSQL (with PostGIS extension)
+```
 
 ### ⚙️ Steps to Run
 
-1. **Clone the repository**
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/ride-booking-platform.git
+cd ride-booking-platform
+```
 
-   ```bash
-   git clone https://github.com/your-username/ride-booking-platform.git
-   cd ride-booking-platform
-Configure application.properties
+```bash
+# 2. Configure application.properties
+# ✅ Set your PostgreSQL credentials
+# ✅ Add Gmail SMTP config
+# ✅ Set JWT secret key
+```
 
-Set up:
-
-PostgreSQL credentials
-
-Gmail SMTP config
-
-JWT secret key
-
-Run the app
-
-bash
-Copy
-Edit
+```bash
+# 3. Run the application
 ./mvnw spring-boot:run
-Access APIs via Postman or Swagger (if configured)
+```
 
-📬 Sample API Endpoints
-Method	Endpoint	Description
-POST	/auth/signup	Register new Rider/Driver
-POST	/auth/login	Login & receive JWT tokens
-POST	/ride/request	Rider requests a ride
-POST	/ride/start/{rideId}?otp=1234	Driver starts ride (with OTP)
-POST	/ride/end/{rideId}	Driver ends the ride
-POST	/rate/rider / /rate/driver	Submit rating after ride
+```text
+Access APIs via Postman or Swagger (if enabled)
+```
 
-📦 Testing
-UberAppApplicationTests.java – email functionality
+---
 
-AuthServiceImplTest.java – unit tests for authentication
+## 📬 Sample API Endpoints
 
-AuthControllerTest.java – integration tests for signup, onboarding
+| Method | Endpoint                        | Description                      |
+|--------|----------------------------------|----------------------------------|
+| POST   | /auth/signup                    | Register new Rider/Driver        |
+| POST   | /auth/login                     | Login & receive JWT tokens       |
+| POST   | /ride/request                   | Rider requests a ride            |
+| POST   | /ride/start/{rideId}?otp=1234   | Driver starts ride (with OTP)    |
+| POST   | /ride/end/{rideId}              | Driver ends the ride             |
+| POST   | /rate/rider / /rate/driver      | Submit rating after ride         |
 
-TestContainers – run PostgreSQL/PostGIS in a container for test isolation
+---
 
-📅 Future Enhancements
-Live ride tracking with WebSockets
+## 📦 Testing
 
-Admin dashboard for monitoring
+```text
+- UberAppApplicationTests.java        -> Email service functionality
+- AuthServiceImplTest.java           -> Unit test for AuthService
+- AuthControllerTest.java            -> Integration tests for signup & onboarding
+- TestContainers                     -> PostgreSQL + PostGIS for isolated DB testing
+```
 
-SMS integration (e.g., with Twilio)
+---
 
-Microservice decomposition for scalability
+## 🌟 Features
+
+```text
+- JWT-based login for Rider and Driver roles
+- Onboarding new drivers with vehicle details
+- Ride request creation and status updates
+- OTP-based ride start verification
+- Wallet and cash payment options
+- Driver/Rider rating system
+- Spatial queries for nearest drivers (PostGIS)
+- Modular strategy patterns for:
+  • Payment handling
+  • Driver matching (proximity & rating based)
+  • Ride fare calculation (default & surge-based)
+- Email notifications using Spring Mail (SMTP)
+```
+
+---
+
+## 📅 Future Enhancements
+
+```text
+- Live ride tracking with WebSockets
+- Admin dashboard for ride/activity monitoring
+- SMS alerts integration (e.g., Twilio)
+- Convert to microservices for scalability
+```
+
+---
