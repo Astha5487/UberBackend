@@ -1,4 +1,4 @@
-# 🚖 UBER – Backend
+# 🚖 RIDE BOOKING PLATFORM – Backend
 
 A scalable **Uber-like ride-booking platform** backend built with **Spring Boot**, enabling real-time ride matching, secure authentication, OTP-verified rides, wallet/cash payments, and driver/rider rating. Integrated with **PostgreSQL + PostGIS** for spatial queries and **OSRM API** for accurate fare calculation.
 
